@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://pokeregistry.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_747e2d8f005c4317907b6d11760ec5d0 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_03ae32b0751a487d9e48b9e2ebcdc4a8 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_953e269c225144a192c1c8cad1538e86 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_bf4674b597004a0c9348eebc475131c8 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: pokeregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_747e2d8f005c4317907b6d11760ec5d0 }}/poke-image:${{ github.sha }}
+        tags: pokeregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_953e269c225144a192c1c8cad1538e86 }}/pokeregistry/poke-image:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'imagesearchpokemon'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_9a904f4d331846ebaa6573068d3a5dc9 }}
-        images: 'pokeregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_747e2d8f005c4317907b6d11760ec5d0 }}/poke-image:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_6375ec42dc1e4a40ad6828ab1653e386 }}
+        images: 'pokeregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_953e269c225144a192c1c8cad1538e86 }}/pokeregistry/poke-image:${{ github.sha }}'
